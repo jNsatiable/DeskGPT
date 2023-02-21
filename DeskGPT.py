@@ -1,7 +1,7 @@
 def load_api_key():
     global api_key_input
     config.read('config.cfg')
-    api_key_from_file = config['api_credentials']['api_key']
+    api_key_input = config['api_credentials']['api_key']
 
 def get_api_key():
     global api_key_input
@@ -17,7 +17,6 @@ def get_api_key():
     except Exception as ex:
         print(ex)
 
-
 import openai, os, sys, time
 import configparser
 config = configparser.ConfigParser()
@@ -26,7 +25,9 @@ api_key_input = 0
 while not api_key_input:
     try:
         load_api_key()
+        print('try block')
     except Exception as e:
+        print('except block')
         print(e)
         get_api_key()
 
