@@ -10,7 +10,7 @@ def get_api_key():
         time.sleep(1)
         api_key_input = input("Please input it here: ").strip()
         config['api_credentials'] = {}
-        config['api_credentials']['api_key'] = api_key_input
+        config['api_credentials']['api_key'] = str(api_key_input)
         with open('config.cfg', 'w') as configfile:
             config.write(configfile)    
         return api_key_input
@@ -22,8 +22,8 @@ import openai, os, sys, time
 import configparser
 config = configparser.ConfigParser()
 
-api_key_from_file = 0
-while not api_key_from_file:
+api_key_input = 0
+while not api_key_input:
     try:
         load_api_key()
     except Exception as e:
@@ -31,11 +31,11 @@ while not api_key_from_file:
         get_api_key()
 
 #print(f'api_key_from_file: {api_key_from_file}')
-print(f'api_key_input: {api_key_input}')
+#print(f'api_key_input: {api_key_input}')
 
 os.system('pause')
 
-openai.api_key = api_key_from_file
+openai.api_key = api_key_input
 
 def generate_response(prompt, max_tokens = 150):
     response = openai.Completion.create(
