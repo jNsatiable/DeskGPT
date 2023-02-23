@@ -25,18 +25,18 @@ def get_api_key():
     except Exception as ex:
         print(ex)
 
-def generate_response(prompt, max_tokens = 1000):
+def generate_response(prompt):
     """
     Function specifying the parameters of the response as well as
     actually displaying it.
     """
     response = openai.Completion.create(
-        engine = "text-davinci-002",
+        engine = "text-davinci-002",    # -- the model to use
         prompt = prompt,
-        max_tokens = max_tokens,
-        n = 1,
-        stop = None,
-        temperature = 0.9)
+        max_tokens = 200,   # -- the maximum number of'words' to generate
+        n = 1,  # -- the number or responses
+        stop = None,    # -- specifies a stop sequecn e.g. a new line char
+        temperature = 0.7)
     message = response.choices[0].text.strip()
     return message
 
