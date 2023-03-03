@@ -3,7 +3,7 @@ def load_api_key():
     Function to load the API key from a file
     """
     global api_key_from_file, engine, max_tokens, n, temperature
-    config.read('config.cfg')
+    config.read('resources/config.cfg')
     api_key_from_file = config['api_credentials']['api_key']
     engine = config['params']['engine']
     max_tokens = config['params']['max_tokens']
@@ -35,7 +35,7 @@ def get_api_key():
 
         config['api_credentials'] = {}
         config['api_credentials']['api_key'] = str(api_key_input)
-        with open('config.cfg', 'w') as configfile:
+        with open('resources/config.cfg', 'w') as configfile:
             config.write(configfile)
         api_key_from_file = api_key_input
         time.sleep(2)
@@ -55,9 +55,9 @@ def test_response():
     except Exception as e:
         print(e)
         config['api_credentials']['api_key'] = ""   # -- clear API key entry
-        with open('config.cfg', 'w') as configfile: # -- update config file
+        with open('resources/config.cfg', 'w') as configfile: # -- update config file
             config.write(configfile)
-        #os.remove('config.cfg') # -- delete config file if API Key is problematic (expired, invalid, etc.)
+        #os.remove('resources/config.cfg') # -- delete config file if API Key is problematic (expired, invalid, etc.)
         input('Press any key to exit...')
         sys.exit()
 
