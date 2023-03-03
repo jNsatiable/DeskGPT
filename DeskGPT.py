@@ -1,7 +1,3 @@
-"""
-Version 0.1.01
-"""
-
 def load_api_key():
     """
     Function to load the API key from a file
@@ -13,6 +9,12 @@ def load_api_key():
     max_tokens = config['params']['max_tokens']
     n = config['params']['n']
     temperature = config['params']['temperature']
+    if api_key_from_file == '':
+        print("There is a problem with your API Key.\n")
+        get_api_key()
+        load_api_key()
+    else:
+        pass
 
 def get_api_key():
     """
@@ -37,9 +39,8 @@ def get_api_key():
             config.write(configfile)
         api_key_from_file = api_key_input
         time.sleep(2)
-    except Exception as ex:
-        print('line 27 error')
-        print(ex)
+    except Exception as e:
+        print(e)
 
 def test_response():
     """
@@ -53,7 +54,10 @@ def test_response():
         )
     except Exception as e:
         print(e)
-        os.remove('config.cfg') # -- delete config file if API Key is problematic (expired, invalid, etc.)
+        config['api_credentials']['api_key'] = ""   # -- clear API key entry
+        with open('config.cfg', 'w') as configfile: # -- update config file
+            config.write(configfile)
+        #os.remove('config.cfg') # -- delete config file if API Key is problematic (expired, invalid, etc.)
         input('Press any key to exit...')
         sys.exit()
 
@@ -65,7 +69,7 @@ def generate_response(prompt):
     response = openai.Completion.create(
         engine = "text-davinci-003",    # -- the model to use
         prompt = prompt,
-        max_tokens = 200,   # -- the maximum number of 'words' to generate
+        max_tokens = 200,   # -- the maximum 'words' in prompt + 'words' in response
         n = 1,  # -- the number or responses
         stop = None,    # -- specifies a stop sequecn e.g. a new line char
         temperature = 0.7)
@@ -86,15 +90,15 @@ while not api_key_from_file:
 
 openai.api_key = api_key_from_file
 
-print(f'PARAMETERS: engine = {engine}, max_tokens = {max_tokens}, n = {n}, temperature = {temperature}\n')
+print(f'SETTINGS: engine = {engine}, max_tokens = {max_tokens}, n = {n}, temperature = {temperature}\n')
 
 prompt = 0  # -- initialize value of prompt
-while True: # -- start a loop that repeats until a break / return is called
-    prompt = input("Enter prompt: ")    # -- ask for input
-    if prompt != '':    # -- when input is not blank
+while True: # -- start a loop
+    prompt = input("Enter prompt: ")    # -- ask user for input
+    if prompt != '':    # -- when input is not blank: generate response
         response = generate_response(prompt)
         print(f'\nDeskGPT: \n{response}\n')    
-    else:   # -- when input is blank
+    else:   # -- when input is blank: quit app
         print('No prompt provided. Exiting program...')
         time.sleep(1)
         break
