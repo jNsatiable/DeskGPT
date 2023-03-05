@@ -32,10 +32,8 @@ For more information regarding these settings: Visit [OpenAI API Reference](http
 ## JUST NEED A QUICK FIX?
 If you're just looking for a hassle-free setup without having to mess with Python installations, etc., you may download the executable version [here](https://bit.ly/DeskGPT). Make sure to download the whole DeskGPT zip folder. Installing and running would be similar to the above.
 ## Making it more accessible
-For easier access, **pin the app to the taskbar** . This way a single click is all you need, making it accessible whenever you need it. You can do this by:
- 1. Creating a shortcut of the .exe file. _Right Click -> 'Create Shortcut'_
- 2. Dragging the newly created shortcut to the task bar
-<video src=https://user-images.githubusercontent.com/125757323/222959962-c782a64e-6bd3-47b5-aa46-c12ffcf4d1bd.mp4></video>
+For easier access, **pin the app to the taskbar** . This way a single click is all you need, making it accessible whenever you need it. You can do this by **dragging the DeskGPT exe file to the task bar** .
+<video src=https://user-images.githubusercontent.com/125757323/222961677-8a2a2fb7-5c3d-42af-86e7-32e01c15b089.mp4> </video>
 ## Authors
 [jNsatiable](https://www.linkedin.com/in/joefer-traya/)
 ## Feature considerations (i.e. What's next?)
