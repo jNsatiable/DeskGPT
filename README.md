@@ -1,7 +1,7 @@
 ![DeskGPT](https://raw.githubusercontent.com/jNsatiable/DeskGPT/main/resources/DeskGPT.ico)
 
 # DeskGPT
-A simple app that allows you to run 'ChatGPT' on your desktop using OpenAI's GPT-3 family of Large Language Models. 
+A simple app that allows you to run 'ChatGPT' on your desktop using OpenAI's Large Language Models. 
 ## Dependencies
 * [Python](https://www.python.org/downloads/)
 * Python modules
